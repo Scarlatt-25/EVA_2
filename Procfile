@@ -1,1 +1,1 @@
-web: gunicorn agenda_contactos.wsgi
+web: gunicorn EVA_2.wsgi
