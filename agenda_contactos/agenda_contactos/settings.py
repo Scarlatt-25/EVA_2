@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8p13++d*tbc5#08iefjis7-w0he7f&rv7q6!4xwtrvua4jd=en
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tu-app.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
 ROOT_URLCONF = 'agenda_contactos.urls'
 
 import os
@@ -125,3 +127,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+import django_heroku
+django_heroku.settings(locals())
