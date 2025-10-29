@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - PYTHONPATH=/app
+    working_dir: /app
+    command: gunicorn agenda_contactos.wsgi:application --bind 0.0.0.0:8080
