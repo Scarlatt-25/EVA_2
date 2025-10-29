@@ -50,8 +50,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+import os
 
-STATIC_ROOT = BASE_DIR / 'staticfiles' 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
 ROOT_URLCONF = 'agenda_contactos.urls'
 
 import os
