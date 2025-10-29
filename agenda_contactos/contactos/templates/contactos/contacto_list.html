@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda de Contactos</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdf7fb;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f8b4d9;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 { margin: 0; font-weight: 500; }
+
+        .container {
+            width: 85%;
+            margin: 2rem auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        a.button {
+            display: inline-block;
+            background-color: #f8b4d9;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        a.button:hover {
+            background-color: #f48fb1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        th, td {
+            padding: 0.9rem;
+            border-bottom: 1px solid #f0e0eb;
+            text-align: left;
+        }
+        th {
+            background-color: #fde2f1;
+            color: #6d4c5b;
+        }
+        tr:hover {
+            background-color: #fff6fa;
+        }
+
+        .search-box {
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+        .search-box input[type="text"] {
+            padding: 0.5rem;
+            width: 220px;
+            border-radius: 25px;
+            border: 1px solid #f8b4d9;
+            outline: none;
+        }
+        .search-box button {
+            background-color: #b8e0d2;
+            color: #4a4a4a;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .search-box button:hover {
+            background-color: #a3d3c4;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>💖 Mi Agenda de Contactos 💖</h1>
+</header>
+
+<div class="container">
+    <a href="{% url 'contactos:crear' %}" class="button">➕ Agregar Contacto</a>
+
+    <div class="search-box">
+        <form method="get" action="{% url 'contactos:lista' %}">
+            <input type="text" name="q" placeholder="Buscar contacto..." value="{{ request.GET.q }}">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contacto in object_list %}
+            <tr>
+                <td>{{ contacto.nombre }}</td>
+                <td>{{ contacto.telefono }}</td>
+                <td>{{ contacto.email }}</td>
+                <td>
+                    <a href="{% url 'contactos:editar' contacto.pk %}" class="button" style="background-color:#b8e0d2;">✏️ Editar</a>
+                    <a href="{% url 'contactos:eliminar' contacto.pk %}" class="button" style="background-color:#f8c1c1;">🗑️ Eliminar</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="4" style="text-align:center;">No hay contactos aún 🥺</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if object %}Editar{% else %}Nuevo{% endif %} Contacto</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdf7fb;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #b8e0d2;
+            color: #4a4a4a;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .container {
+            width: 40%;
+            margin: 3rem auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        form input, form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            border: 1px solid #f8b4d9;
+            background-color: #fff8fb;
+            outline: none;
+        }
+        form input:focus, form textarea:focus {
+            border-color: #f48fb1;
+        }
+        form button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            background-color: #f8b4d9;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        form button:hover {
+            background-color: #f48fb1;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #a06cd5;
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>{% if object %}Editar{% else %}Nuevo{% endif %} Contacto 🌼</h1>
+</header>
+
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'contactos:lista' %}">← Volver a la lista</a>
+</div>
+</body>
+</html>
+

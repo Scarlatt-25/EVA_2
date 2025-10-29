@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Contacto</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdf7fb;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f8c1c1;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .container {
+            width: 40%;
+            margin: 3rem auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        form button {
+            background-color: #f48fb1;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        form button:hover {
+            background-color: #ec6a95;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #a06cd5;
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Eliminar Contacto 💔</h1>
+</header>
+
+<div class="container">
+    <p>¿Estás segura de que quieres eliminar a <strong>{{ object.nombre }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+    <a href="{% url 'contactos:lista' %}">Cancelar</a>
+</div>
+</body>
+</html>
